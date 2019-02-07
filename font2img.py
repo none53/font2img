@@ -59,7 +59,8 @@ class font2img():
         self._get_font_paths()
         self._get_chars()
 
-        self.failure_txt = open(os.path.join(self.dst_dir_path, 'failure.txt'), 'a')
+        self.failure_txt = open(os.path.join(self.dst_dir_path, 'failure.txt'),
+                               'a',encoding="utf-8")
 
     def __del__(self):
         self.failure_txt.close()
@@ -81,7 +82,7 @@ class font2img():
         '''
         画像化する文字を取得
         '''
-        with open(self.src_chars_txt_path) as chars_txt_file:
+        with open(self.src_chars_txt_path, encoding='utf-8') as chars_txt_file:
             readlines = chars_txt_file.readlines()
         str_chars = ''
         for line in readlines:
@@ -147,7 +148,8 @@ class font2img():
                     dst_img_dir_path = os.path.join(self.dst_dir_path, self.escape_chars[i])
                 else:
                     file_name = self.escape_chars[i]
-                dst_img_path = os.path.join(dst_img_dir_path, '{}.{}'.format(file_name, self.output_ext))
+                #dst_img_path = os.path.join(dst_img_dir_path, '{}.{}'.format(file_name, self.output_ext))
+                dst_img_path = os.path.join(dst_img_dir_path, '{:06X}.{}'.format(file_name, self.output_ext))
                 img.save(dst_img_path)
                 dst_img_paths.append(dst_img_path)
             if failure_chars:
