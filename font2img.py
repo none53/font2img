@@ -149,7 +149,7 @@ class font2img():
                 else:
                     file_name = self.escape_chars[i]
                 #dst_img_path = os.path.join(dst_img_dir_path, '{}.{}'.format(file_name, self.output_ext))
-                dst_img_path = os.path.join(dst_img_dir_path, '{:06X}.{}'.format(file_name, self.output_ext))
+                dst_img_path = os.path.join(dst_img_dir_path, 'U+{:08X}.{}'.format(file_name, self.output_ext))
                 img.save(dst_img_path)
                 dst_img_paths.append(dst_img_path)
             if failure_chars:
